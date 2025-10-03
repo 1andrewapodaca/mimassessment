@@ -39,20 +39,6 @@
             z-index: 10;
         }
 
-        .logo-text-primary {
-            font-family: Arial, sans-serif;
-            font-size: 32px;
-            font-weight: 700;
-            fill: #0000CD;
-        }
-
-        .logo-text-secondary {
-            font-family: Arial, sans-serif;
-            font-size: 32px;
-            font-weight: 400;
-            fill: #4F5D75;
-        }
-
         .content {
             padding: 100px 60px 80px;
         }
@@ -147,6 +133,10 @@
             cursor: not-allowed;
         }
 
+        .hidden {
+            display: none !important;
+        }
+
         .progress-bar-container {
             margin-bottom: 40px;
         }
@@ -194,6 +184,7 @@
             background: white;
             cursor: pointer;
             transition: all 0.2s ease;
+            position: relative;
         }
 
         .option:hover {
@@ -230,17 +221,13 @@
             font-weight: bold;
         }
 
-        .slider-container {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
         input[type="range"] {
             width: 100%;
             height: 4px;
             background: #E5E7EB;
             outline: none;
             -webkit-appearance: none;
+            margin-bottom: 20px;
         }
 
         input[type="range"]::-webkit-slider-thumb {
@@ -294,272 +281,16 @@
             margin-left: auto;
         }
 
-        .score-display {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .score-number {
-            font-size: 72px;
-            font-weight: 700;
-            color: #0000CD;
-            line-height: 1;
-        }
-
-        .score-denominator {
-            font-size: 18px;
-            color: #4F5D75;
-            font-weight: 500;
-            margin-top: 4px;
-        }
-
-        .score-title {
-            font-size: 36px;
-            font-weight: 700;
-            color: #0000CD;
-            margin: 24px 0 12px;
-        }
-
-        .maturity-level {
-            font-size: 20px;
-            color: #EF8354;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .score-description {
-            font-size: 16px;
-            color: #4F5D75;
-            margin: 0 auto 24px;
-            max-width: 600px;
-        }
-
-        .benchmark-badge {
-            display: inline-block;
-            background: #F0F0FF;
-            color: #0000CD;
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: 600;
-            border: 1px solid #C0C0FF;
-        }
-
-        .breakdown-item {
-            margin-bottom: 20px;
-        }
-
-        .breakdown-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .breakdown-label {
-            font-size: 15px;
-            color: #000000;
-            font-weight: 500;
-        }
-
-        .breakdown-score {
-            font-size: 15px;
-            color: #0000CD;
-            font-weight: 700;
-        }
-
-        .breakdown-bar-bg {
-            background: #E5E7EB;
-            height: 8px;
-            overflow: hidden;
-        }
-
-        .breakdown-bar-fill {
-            background: #0000CD;
-            height: 100%;
-        }
-
-        .cost-box {
-            background: #FEF2F2;
-            border: 1px solid #FCA5A5;
-            padding: 32px;
-            margin-bottom: 40px;
-        }
-
-        .cost-box h3 {
-            color: #991B1B;
-        }
-
-        .cost-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-bottom: 24px;
-        }
-
-        .cost-item {
-            background: white;
-            padding: 24px;
-            border: 1px solid #FECACA;
-        }
-
-        .cost-label {
-            font-size: 14px;
-            color: #991B1B;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .cost-value {
-            font-size: 32px;
-            font-weight: 700;
-            color: #EF8354;
-        }
-
-        .cost-subtext {
-            font-size: 13px;
-            color: #4F5D75;
-        }
-
-        .cost-total {
-            background: white;
-            padding: 24px;
-            border: 2px solid #991B1B;
-        }
-
-        .cost-total .cost-label {
-            color: #991B1B;
-        }
-
-        .cost-total .cost-value {
-            font-size: 40px;
-            color: #991B1B;
-        }
-
-        .cost-total .cost-subtext {
-            margin-top: 8px;
-        }
-
-        .priority-box {
-            background: #F0FDF4;
-            border: 1px solid #86EFAC;
-            padding: 32px;
-            margin-bottom: 50px;
-        }
-
-        .priority-box h3 {
-            color: #166534;
-        }
-
-        .priority-item {
-            background: white;
-            padding: 20px 24px;
-            border: 1px solid #BBF7D0;
-            display: flex;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .priority-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .priority-number {
-            min-width: 32px;
-            height: 32px;
-            background: #6A5ACD;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        .priority-content {
-            flex: 1;
-        }
-
-        .priority-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 6px;
-        }
-
-        .priority-reason {
-            font-size: 14px;
-            color: #4F5D75;
-            margin-bottom: 8px;
-        }
-
-        .priority-impact {
-            font-size: 15px;
-            color: #166534;
-            font-weight: 600;
-        }
-
-        .cta-section {
-            border-top: 1px solid #E5E7EB;
-            padding-top: 40px;
-            text-align: center;
-        }
-
-        .cta-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            max-width: 500px;
-            margin: 0 auto 50px;
-        }
-
-        .about-box {
-            background: #F9FAFB;
-            border: 1px solid #E5E7EB;
-            padding: 32px;
-            border-radius: 4px;
-            text-align: left;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-box h4 {
-            font-size: 16px;
-            font-weight: 700;
-            color: #0000CD;
-            margin-bottom: 16px;
-        }
-
-        .about-box p {
-            font-size: 14px;
-            color: #4F5D75;
-            line-height: 1.7;
-            margin-bottom: 12px;
-        }
-
-        .about-box p:last-child {
-            margin-bottom: 0;
-        }
-
-        .hidden {
-            display: none;
-        }
-
         @media (max-width: 768px) {
             .content {
                 padding: 80px 30px 60px;
             }
-
             h1 {
                 font-size: 28px;
             }
-
             h2 {
                 font-size: 22px;
             }
-
-            .cost-grid {
-                grid-template-columns: 1fr;
-            }
-
             .option-grid-2col {
                 grid-template-columns: 1fr;
             }
@@ -570,8 +301,8 @@
     <div class="container">
         <div class="logo">
             <svg width="160" height="28" viewBox="0 0 300 50" xmlns="http://www.w3.org/2000/svg">
-                <text x="0" y="35" class="logo-text-primary">Certatude</text>
-                <text x="155" y="35" class="logo-text-secondary">Solutions</text>
+                <text x="0" y="35" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#0000CD">Certatude</text>
+                <text x="155" y="35" font-family="Arial, sans-serif" font-size="32" font-weight="400" fill="#4F5D75">Solutions</text>
             </svg>
         </div>
 
@@ -590,7 +321,7 @@
                 <div class="info-item"><strong>Actionable roadmap</strong> with ROI estimates</div>
             </div>
 
-            <button class="btn btn-primary" onclick="startAssessment()">Start Assessment</button>
+            <button class="btn btn-primary" id="start-btn">Start Assessment</button>
         </div>
 
         <!-- Questions Screen -->
@@ -608,19 +339,17 @@
             <div id="question-container"></div>
 
             <div class="navigation">
-                <button class="btn btn-secondary hidden" id="back-btn" onclick="previousQuestion()">Back</button>
-                <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" disabled>Next</button>
+                <button class="btn btn-secondary hidden" id="back-btn">Back</button>
+                <button class="btn btn-primary" id="next-btn" disabled>Next</button>
             </div>
         </div>
 
         <!-- Results Screen -->
-        <div id="results-screen" class="content results hidden">
-            <!-- Results content will be populated by JavaScript -->
-        </div>
+        <div id="results-screen" class="content results hidden"></div>
     </div>
 
     <script>
-        // State management
+        // State
         let currentQuestion = 1;
         const answers = {
             roiMethod: '',
@@ -631,416 +360,12 @@
             teamSize: 5
         };
 
-        // Utility functions
+        // Utility
         function formatCurrency(num) {
             if (!num || isNaN(num)) return '$0';
-            if (num >= 1000000) {
-                return `$${(num / 1000000).toFixed(1)}M`;
-            } else if (num >= 1000) {
-                return `$${(num / 1000).toFixed(0)}K`;
-            }
+            if (num >= 1000000) return `$${(num / 1000000).toFixed(1)}M`;
+            if (num >= 1000) return `$${(num / 1000).toFixed(0)}K`;
             return `$${num.toFixed(0)}`;
-        }
-
-        function calculateScore() {
-            let totalScore = 0;
-            
-            const roiScores = {
-                'none': 0,
-                'spreadsheets': 1,
-                'basic': 2,
-                'multitouch': 3.2,
-                'advanced': 4
-            };
-            totalScore += (roiScores[answers.roiMethod] || 0);
-            
-            const efficiencyScore = Math.max(0, 2 - (answers.reportingHours / 10));
-            totalScore += efficiencyScore;
-            
-            const confidenceScore = Math.pow(answers.dataConfidence / 10, 1.5) * 2.5;
-            totalScore += confidenceScore;
-            
-            const challengePenalty = Math.min(answers.challenge.length * 0.3, 1.5);
-            totalScore -= challengePenalty;
-            
-            if (answers.budget >= 20000000) totalScore += 1;
-            else if (answers.budget >= 10000000) totalScore += 0.75;
-            else if (answers.budget >= 5000000) totalScore += 0.5;
-            else if (answers.budget >= 2000000) totalScore += 0.25;
-            
-            return Math.min(10, Math.max(0, totalScore)).toFixed(1);
-        }
-
-        function getMaturityLevel(score) {
-            const numScore = parseFloat(score);
-            
-            if (numScore < 2.5) {
-                return { 
-                    label: 'Early Stage', 
-                    desc: `Your marketing intelligence infrastructure is in critical need of modernization. The cumulative impact of these gaps likely represents 40-60% of potential revenue being left on the table—a multi-million dollar problem that compounds quarterly.`
-                };
-            }
-            if (numScore < 4.5) {
-                return { 
-                    label: 'Developing', 
-                    desc: `You've established basic capabilities, but significant gaps remain that are costing you competitive advantage. Industry data shows organizations at your maturity level typically achieve only 50-65% of the ROI that mature organizations realize from the same budget.`
-                };
-            }
-            if (numScore < 6.5) {
-                return { 
-                    label: 'Advancing', 
-                    desc: `You're progressing toward marketing intelligence maturity, but critical gaps are preventing you from maximizing returns. Closing these specific gaps typically unlocks 25-40% improvement in marketing ROI within 6-9 months—the difference between market leadership and being a fast follower.`
-                };
-            }
-            if (numScore < 8.5) {
-                return { 
-                    label: 'Mature', 
-                    desc: `You've built strong marketing intelligence capabilities that put you ahead of most competitors. The remaining opportunities lie in advanced automation and predictive analytics. Companies at your maturity level who implement ML-driven optimization typically see an additional 12-18% performance lift.` 
-                };
-            }
-            return { 
-                label: 'Leading Edge', 
-                desc: `You're operating at the cutting edge of marketing intelligence—congratulations. Your focus should shift from foundational capabilities to emerging technologies like AI-driven creative optimization and predictive customer lifetime value modeling.`
-            };
-        }
-
-        function calculateOpportunityCost() {
-            const avgSalary = 85000;
-            const reportingCost = Math.floor((answers.reportingHours * 52 * avgSalary) / 2080);
-            
-            let budgetWaste = 0;
-            let potentialGains = 0;
-            
-            if (answers.roiMethod === 'none') {
-                budgetWaste = answers.budget * 0.42;
-                potentialGains = answers.budget * 0.48;
-            } else if (answers.roiMethod === 'spreadsheets') {
-                budgetWaste = answers.budget * 0.36;
-                potentialGains = answers.budget * 0.42;
-            } else if (answers.roiMethod === 'basic') {
-                budgetWaste = answers.budget * 0.32;
-                potentialGains = answers.budget * 0.38;
-            } else if (answers.roiMethod === 'multitouch') {
-                budgetWaste = answers.budget * 0.24;
-                potentialGains = answers.budget * 0.30;
-            } else {
-                budgetWaste = answers.budget * 0.18;
-                potentialGains = answers.budget * 0.25;
-            }
-            
-            if (answers.dataConfidence <= 4) {
-                budgetWaste *= 1.55;
-                potentialGains *= 1.55;
-            } else if (answers.dataConfidence <= 6) {
-                budgetWaste *= 1.35;
-                potentialGains *= 1.35;
-            } else if (answers.dataConfidence <= 8) {
-                budgetWaste *= 1.22;
-                potentialGains *= 1.22;
-            } else {
-                budgetWaste *= 1.10;
-                potentialGains *= 1.10;
-            }
-            
-            const challengeCount = answers.challenge.length;
-            const challengeMultiplier = 1 + (challengeCount * 0.12);
-            budgetWaste *= challengeMultiplier;
-            potentialGains *= challengeMultiplier;
-            
-            const avgMarketingSalary = 85000;
-            const productivityLossPerPerson = avgMarketingSalary * 0.35;
-            const productivityLoss = Math.max(answers.teamSize * productivityLossPerPerson, 150000);
-            
-            const techGapPerPerson = answers.roiMethod === 'none' ? 85000 : 
-                                     answers.roiMethod === 'spreadsheets' ? 65000 :
-                                     answers.roiMethod === 'basic' ? 45000 : 
-                                     answers.roiMethod === 'multitouch' ? 30000 : 20000;
-            const toolsGap = Math.max(answers.teamSize * techGapPerPerson, 100000);
-            
-            const decisionDelayCost = Math.floor(answers.budget * (answers.reportingHours / 80));
-            const innovationGap = answers.budget * 0.08;
-            
-            const calculatedTotal = Math.floor(
-                budgetWaste + 
-                potentialGains + 
-                reportingCost + 
-                productivityLoss + 
-                toolsGap + 
-                decisionDelayCost +
-                innovationGap
-            );
-            
-            let minimumOpportunity;
-            if (answers.budget >= 20000000) {
-                minimumOpportunity = Math.max(answers.budget * 0.65, 8000000);
-            } else if (answers.budget >= 10000000) {
-                minimumOpportunity = Math.max(answers.budget * 0.70, 4000000);
-            } else if (answers.budget >= 5000000) {
-                minimumOpportunity = Math.max(answers.budget * 0.75, 2500000);
-            } else {
-                minimumOpportunity = Math.max(answers.budget * 0.80, 1000000);
-            }
-            
-            return {
-                reportingCost: Math.max(reportingCost, 75000),
-                budgetWaste: Math.max(Math.floor(budgetWaste), answers.budget * 0.15),
-                potentialGains: Math.max(Math.floor(potentialGains), answers.budget * 0.20),
-                totalOpportunity: Math.max(calculatedTotal, minimumOpportunity)
-            };
-        }
-
-        function getBreakdownScores() {
-            const roiScores = {
-                'none': 1,
-                'spreadsheets': 2,
-                'basic': 4,
-                'multitouch': 7,
-                'advanced': 9
-            };
-            
-            return {
-                attribution: roiScores[answers.roiMethod] || 1,
-                dataFoundation: answers.dataConfidence,
-                efficiency: Math.max(1, 10 - Math.floor(answers.reportingHours / 4)),
-                roiVisibility: roiScores[answers.roiMethod] || 1
-            };
-        }
-
-        function getPriorities() {
-            const breakdown = getBreakdownScores();
-            const costs = calculateOpportunityCost();
-            
-            const priorities = [
-                {
-                    title: 'Fix Attribution & ROI Visibility',
-                    impact: formatCurrency(costs.budgetWaste),
-                    reason: 'Better attribution helps optimize budget allocation',
-                    score: breakdown.attribution
-                },
-                {
-                    title: 'Automate Reporting',
-                    impact: `${answers.reportingHours} hours/week saved`,
-                    reason: 'Free your team to focus on insights, not data gathering',
-                    score: breakdown.efficiency
-                },
-                {
-                    title: 'Improve Data Quality',
-                    impact: formatCurrency(costs.potentialGains),
-                    reason: 'Clean data is the foundation for all marketing intelligence',
-                    score: breakdown.dataFoundation
-                }
-            ];
-            
-            return priorities.sort((a, b) => a.score - b.score).slice(0, 3);
-        }
-
-        // Navigation functions
-        function startAssessment() {
-            document.getElementById('intro-screen').classList.add('hidden');
-            document.getElementById('questions-screen').classList.remove('hidden');
-            renderQuestion();
-        }
-
-        function nextQuestion() {
-            if (currentQuestion < 6) {
-                currentQuestion++;
-                renderQuestion();
-                updateProgress();
-            } else {
-                showResults();
-            }
-        }
-
-        function previousQuestion() {
-            if (currentQuestion > 1) {
-                currentQuestion--;
-                renderQuestion();
-                updateProgress();
-            }
-        }
-
-        function updateProgress() {
-            document.getElementById('current-q').textContent = currentQuestion;
-            const percentage = (currentQuestion / 6 * 100).toFixed(0);
-            document.getElementById('progress-pct').textContent = percentage;
-            document.getElementById('progress-bar').style.width = percentage + '%';
-            
-            if (currentQuestion > 1) {
-                document.getElementById('back-btn').classList.remove('hidden');
-            } else {
-                document.getElementById('back-btn').classList.add('hidden');
-            }
-            
-            if (currentQuestion === 6) {
-                document.getElementById('next-btn').textContent = 'See My Results';
-            } else {
-                document.getElementById('next-btn').textContent = 'Next';
-            }
-        }
-
-        function canProceed() {
-            switch(currentQuestion) {
-                case 1: return answers.roiMethod !== '';
-                case 2: return true;
-                case 3: return answers.challenge.length > 0;
-                case 4: return true;
-                case 5: return true;
-                case 6: return true;
-                default: return false;
-            }
-        }
-
-        function checkCanProceed() {
-            document.getElementById('next-btn').disabled = !canProceed();
-        }
-
-        // Question rendering
-        function renderQuestion() {
-            const container = document.getElementById('question-container');
-            let html = '';
-
-            switch(currentQuestion) {
-                case 1:
-                    html = `
-                        <h2>How do you primarily attribute marketing performance to revenue?</h2>
-                        <p class="question-subtitle">Think about how you connect your marketing activities to business outcomes</p>
-                        <div class="option-grid">
-                            ${renderOption('roiMethod', 'none', 'No formal attribution—we estimate or use anecdotal evidence')}
-                            ${renderOption('roiMethod', 'spreadsheets', 'Primarily manual tracking across multiple spreadsheets')}
-                            ${renderOption('roiMethod', 'basic', 'Platform dashboards with first-touch or last-touch attribution')}
-                            ${renderOption('roiMethod', 'multitouch', 'Multi-touch attribution model tracking the full customer journey')}
-                            ${renderOption('roiMethod', 'advanced', 'Advanced algorithmic or ML-driven attribution with predictive insights')}
-                        </div>
-                    `;
-                    break;
-
-                case 2:
-                    html = `
-                        <h2>Approximately how many hours per week does your team spend on manual reporting?</h2>
-                        <p class="question-subtitle">Include time spent pulling data, building reports, and formatting across all team members</p>
-                        <input type="range" min="0" max="40" step="1" value="${answers.reportingHours}" 
-                            oninput="updateReportingHours(this.value)" class="slider-container">
-                        <div class="slider-value" id="reporting-value">${answers.reportingHours >= 40 ? '40+' : answers.reportingHours} hours/week</div>
-                        <div class="slider-subtext">≈ $${((answers.reportingHours * 52 * 85000) / 2080).toFixed(0)}/year in labor costs</div>
-                    `;
-                    break;
-
-                case 3:
-                    html = `
-                        <h2>When presenting marketing results to executives, what concerns do you have?</h2>
-                        <p class="question-subtitle">Select all that apply - these challenges often occur together</p>
-                        <div class="option-grid option-grid-2col">
-                            ${renderMultiOption('challenge', 'roi', 'ROI or revenue impact numbers not always accepted')}
-                            ${renderMultiOption('challenge', 'budget', 'Uncertainty about which channels deserve more budget')}
-                            ${renderMultiOption('challenge', 'manual', 'Data is too stale or incomplete by meeting time')}
-                            ${renderMultiOption('challenge', 'attribution', 'Attribution data is questioned or needs alignment')}
-                            ${renderMulti
-${renderMultiOption('challenge', 'comparison', 'Cannot compare performance across campaigns or periods')}
-                            ${renderMultiOption('challenge', 'confidence', 'Data accuracy needs validation before presenting')}
-                        </div>
-                    `;
-                    break;
-
-                case 4:
-                    html = `
-                        <h2>How confident are you in your current marketing data quality?</h2>
-                        <p class="question-subtitle">Consider data completeness, accuracy, and timeliness (e.g., UTM tracking consistency, CRM integration quality, data freshness across platforms)</p>
-                        <input type="range" min="1" max="10" step="1" value="${answers.dataConfidence}" 
-                            oninput="updateDataConfidence(this.value)" class="slider-container">
-                        <div class="slider-labels">
-                            <span>Not confident</span>
-                            <span>Very confident</span>
-                        </div>
-                        <div class="slider-value" id="confidence-value">${answers.dataConfidence}/10</div>
-                    `;
-                    break;
-
-                case 5:
-                    html = `
-                        <h2>How many people are on your marketing team?</h2>
-                        <p class="question-subtitle">Include full-time marketers, contractors, and agency resources dedicated to your marketing</p>
-                        <input type="range" min="1" max="500" step="1" value="${answers.teamSize}" 
-                            oninput="updateTeamSize(this.value)" class="slider-container">
-                        <div class="slider-value" id="team-value">${answers.teamSize >= 500 ? '500+' : answers.teamSize} ${answers.teamSize === 1 ? 'person' : 'people'}</div>
-                        <div class="slider-subtext" id="team-subtext">${getTeamSizeLabel(answers.teamSize)}</div>
-                    `;
-                    break;
-
-                case 6:
-                    html = `
-                        <h2>What is your annual marketing budget?</h2>
-                        <p class="question-subtitle">This helps us benchmark your maturity against similar organizations (optional)</p>
-                        <input type="range" min="500000" max="50000000" step="500000" value="${answers.budget}" 
-                            oninput="updateBudget(this.value)" class="slider-container">
-                        <div class="slider-value" id="budget-value">${answers.budget >= 50000000 ? '$50M+' : formatCurrency(answers.budget)}</div>
-                        <div class="slider-subtext">Annual marketing budget</div>
-                    `;
-                    break;
-            }
-
-            container.innerHTML = html;
-            checkCanProceed();
-        }
-
-        function renderOption(field, value, label) {
-            const selected = answers[field] === value ? 'selected' : '';
-            return `
-                <div class="option ${selected}" onclick="selectOption('${field}', '${value}')">
-                    <div class="option-label">${label}</div>
-                </div>
-            `;
-        }
-
-        function renderMultiOption(field, value, label) {
-            const selected = answers[field].includes(value) ? 'selected' : '';
-            const checkmark = answers[field].includes(value) ? '<div class="checkmark">✓</div>' : '';
-            return `
-                <div class="option ${selected}" onclick="toggleOption('${field}', '${value}')" style="position: relative; text-align: center;">
-                    ${checkmark}
-                    <div class="option-label">${label}</div>
-                </div>
-            `;
-        }
-
-        function selectOption(field, value) {
-            answers[field] = value;
-            renderQuestion();
-        }
-
-        function toggleOption(field, value) {
-            const index = answers[field].indexOf(value);
-            if (index > -1) {
-                answers[field].splice(index, 1);
-            } else {
-                answers[field].push(value);
-            }
-            renderQuestion();
-        }
-
-        function updateReportingHours(value) {
-            answers.reportingHours = parseInt(value);
-            document.getElementById('reporting-value').textContent = 
-                `${value >= 40 ? '40+' : value} hours/week`;
-            document.querySelector('.slider-subtext').textContent = 
-                `≈ $${((value * 52 * 85000) / 2080).toFixed(0)}/year in labor costs`;
-        }
-
-        function updateDataConfidence(value) {
-            answers.dataConfidence = parseInt(value);
-            document.getElementById('confidence-value').textContent = `${value}/10`;
-        }
-
-        function updateTeamSize(value) {
-            answers.teamSize = parseInt(value);
-            document.getElementById('team-value').textContent = 
-                `${value >= 500 ? '500+' : value} ${value == 1 ? 'person' : 'people'}`;
-            document.getElementById('team-subtext').textContent = getTeamSizeLabel(value);
-        }
-
-        function updateBudget(value) {
-            answers.budget = parseInt(value);
-            document.getElementById('budget-value').textContent = 
-                value >= 50000000 ? '$50M+' : formatCurrency(parseInt(value));
         }
 
         function getTeamSizeLabel(size) {
@@ -1051,144 +376,200 @@ ${renderMultiOption('challenge', 'comparison', 'Cannot compare performance acros
             return 'Enterprise-scale team';
         }
 
-        // Results rendering
+        // Event Listeners
+        document.getElementById('start-btn').addEventListener('click', function() {
+            document.getElementById('intro-screen').classList.add('hidden');
+            document.getElementById('questions-screen').classList.remove('hidden');
+            renderQuestion();
+        });
+
+        document.getElementById('next-btn').addEventListener('click', function() {
+            if (currentQuestion < 6) {
+                currentQuestion++;
+                renderQuestion();
+                updateProgress();
+            } else {
+                showResults();
+            }
+        });
+
+        document.getElementById('back-btn').addEventListener('click', function() {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                renderQuestion();
+                updateProgress();
+            }
+        });
+
+        // Progress
+        function updateProgress() {
+            document.getElementById('current-q').textContent = currentQuestion;
+            const percentage = (currentQuestion / 6 * 100).toFixed(0);
+            document.getElementById('progress-pct').textContent = percentage;
+            document.getElementById('progress-bar').style.width = percentage + '%';
+            
+            document.getElementById('back-btn').classList.toggle('hidden', currentQuestion === 1);
+            document.getElementById('next-btn').textContent = currentQuestion === 6 ? 'See My Results' : 'Next';
+        }
+
+        function checkCanProceed() {
+            let canProceed = false;
+            switch(currentQuestion) {
+                case 1: canProceed = answers.roiMethod !== ''; break;
+                case 2: canProceed = true; break;
+                case 3: canProceed = answers.challenge.length > 0; break;
+                case 4: canProceed = true; break;
+                case 5: canProceed = true; break;
+                case 6: canProceed = true; break;
+            }
+            document.getElementById('next-btn').disabled = !canProceed;
+        }
+
+        // Render
+        function renderQuestion() {
+            const container = document.getElementById('question-container');
+            let html = '';
+
+            if (currentQuestion === 1) {
+                html = `
+                    <h2>How do you primarily attribute marketing performance to revenue?</h2>
+                    <p class="question-subtitle">Think about how you connect your marketing activities to business outcomes</p>
+                    <div class="option-grid">
+                        ${renderOption('roiMethod', 'none', 'No formal attribution—we estimate or use anecdotal evidence')}
+                        ${renderOption('roiMethod', 'spreadsheets', 'Primarily manual tracking across multiple spreadsheets')}
+                        ${renderOption('roiMethod', 'basic', 'Platform dashboards with first-touch or last-touch attribution')}
+                        ${renderOption('roiMethod', 'multitouch', 'Multi-touch attribution model tracking the full customer journey')}
+                        ${renderOption('roiMethod', 'advanced', 'Advanced algorithmic or ML-driven attribution with predictive insights')}
+                    </div>
+                `;
+            } else if (currentQuestion === 2) {
+                html = `
+                    <h2>Approximately how many hours per week does your team spend on manual reporting?</h2>
+                    <p class="question-subtitle">Include time spent pulling data, building reports, and formatting across all team members</p>
+                    <input type="range" min="0" max="40" step="1" value="${answers.reportingHours}" id="reporting-slider">
+                    <div class="slider-value" id="reporting-value">${answers.reportingHours >= 40 ? '40+' : answers.reportingHours} hours/week</div>
+                    <div class="slider-subtext" id="reporting-cost">≈ $${((answers.reportingHours * 52 * 85000) / 2080).toFixed(0)}/year in labor costs</div>
+                `;
+            } else if (currentQuestion === 3) {
+                html = `
+                    <h2>When presenting marketing results to executives, what concerns do you have?</h2>
+                    <p class="question-subtitle">Select all that apply - these challenges often occur together</p>
+                    <div class="option-grid option-grid-2col">
+                        ${renderMultiOption('challenge', 'roi', 'ROI or revenue impact numbers not always accepted')}
+                        ${renderMultiOption('challenge', 'budget', 'Uncertainty about which channels deserve more budget')}
+                        ${renderMultiOption('challenge', 'manual', 'Data is too stale or incomplete by meeting time')}
+                        ${renderMultiOption('challenge', 'attribution', 'Attribution data is questioned or needs alignment')}
+                        ${renderMultiOption('challenge', 'comparison', 'Cannot compare performance across campaigns or periods')}
+                        ${renderMultiOption('challenge', 'confidence', 'Data accuracy needs validation before presenting')}
+                    </div>
+                `;
+            } else if (currentQuestion === 4) {
+                html = `
+                    <h2>How confident are you in your current marketing data quality?</h2>
+                    <p class="question-subtitle">Consider data completeness, accuracy, and timeliness</p>
+                    <input type="range" min="1" max="10" step="1" value="${answers.dataConfidence}" id="confidence-slider">
+                    <div class="slider-labels">
+                        <span>Not confident</span>
+                        <span>Very confident</span>
+                    </div>
+                    <div class="slider-value" id="confidence-value">${answers.dataConfidence}/10</div>
+                `;
+            } else if (currentQuestion === 5) {
+                html = `
+                    <h2>How many people are on your marketing team?</h2>
+                    <p class="question-subtitle">Include full-time marketers, contractors, and agency resources</p>
+                    <input type="range" min="1" max="500" step="1" value="${answers.teamSize}" id="team-slider">
+                    <div class="slider-value" id="team-value">${answers.teamSize >= 500 ? '500+' : answers.teamSize} ${answers.teamSize === 1 ? 'person' : 'people'}</div>
+                    <div class="slider-subtext" id="team-subtext">${getTeamSizeLabel(answers.teamSize)}</div>
+                `;
+            } else if (currentQuestion === 6) {
+                html = `
+                    <h2>What is your annual marketing budget?</h2>
+                    <p class="question-subtitle">This helps us benchmark your maturity against similar organizations</p>
+                    <input type="range" min="500000" max="50000000" step="500000" value="${answers.budget}" id="budget-slider">
+                    <div class="slider-value" id="budget-value">${answers.budget >= 50000000 ? '$50M+' : formatCurrency(answers.budget)}</div>
+                    <div class="slider-subtext">Annual marketing budget</div>
+                `;
+            }
+
+            container.innerHTML = html;
+            attachEventListeners();
+            checkCanProceed();
+        }
+
+        function renderOption(field, value, label) {
+            const selected = answers[field] === value ? 'selected' : '';
+            return `<div class="option ${selected}" data-field="${field}" data-value="${value}"><div class="option-label">${label}</div></div>`;
+        }
+
+        function renderMultiOption(field, value, label) {
+            const selected = answers[field].includes(value) ? 'selected' : '';
+            const checkmark = answers[field].includes(value) ? '<div class="checkmark">✓</div>' : '';
+            return `<div class="option ${selected}" data-field="${field}" data-value="${value}" style="text-align: center;">${checkmark}<div class="option-label">${label}</div></div>`;
+        }
+
+        function attachEventListeners() {
+            document.querySelectorAll('.option').forEach(el => {
+                el.addEventListener('click', function() {
+                    const field = this.dataset.field;
+                    const value = this.dataset.value;
+                    
+                    if (field === 'challenge') {
+                        const index = answers[field].indexOf(value);
+                        if (index > -1) {
+                            answers[field].splice(index, 1);
+                        } else {
+                            answers[field].push(value);
+                        }
+                    } else {
+                        answers[field] = value;
+                    }
+                    renderQuestion();
+                });
+            });
+
+            const reportingSlider = document.getElementById('reporting-slider');
+            if (reportingSlider) {
+                reportingSlider.addEventListener('input', function() {
+                    const val = parseInt(this.value);
+                    answers.reportingHours = val;
+                    document.getElementById('reporting-value').textContent = `${val >= 40 ? '40+' : val} hours/week`;
+                    document.getElementById('reporting-cost').textContent = `≈ $${((val * 52 * 85000) / 2080).toFixed(0)}/year in labor costs`;
+                });
+            }
+
+            const confidenceSlider = document.getElementById('confidence-slider');
+            if (confidenceSlider) {
+                confidenceSlider.addEventListener('input', function() {
+                    answers.dataConfidence = parseInt(this.value);
+                    document.getElementById('confidence-value').textContent = `${this.value}/10`;
+                });
+            }
+
+            const teamSlider = document.getElementById('team-slider');
+            if (teamSlider) {
+                teamSlider.addEventListener('input', function() {
+                    const val = parseInt(this.value);
+                    answers.teamSize = val;
+                    document.getElementById('team-value').textContent = `${val >= 500 ? '500+' : val} ${val === 1 ? 'person' : 'people'}`;
+                    document.getElementById('team-subtext').textContent = getTeamSizeLabel(val);
+                });
+            }
+
+            const budgetSlider = document.getElementById('budget-slider');
+            if (budgetSlider) {
+                budgetSlider.addEventListener('input', function() {
+                    const val = parseInt(this.value);
+                    answers.budget = val;
+                    document.getElementById('budget-value').textContent = val >= 50000000 ? '$50M+' : formatCurrency(val);
+                });
+            }
+        }
+
         function showResults() {
             document.getElementById('questions-screen').classList.add('hidden');
             document.getElementById('results-screen').classList.remove('hidden');
-            
-            const score = calculateScore();
-            const maturityLevel = getMaturityLevel(score);
-            const breakdown = getBreakdownScores();
-            const costs = calculateOpportunityCost();
-            const priorities = getPriorities();
-
-            const resultsHTML = `
-                <div class="score-display">
-                    <div style="display: inline-flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 24px;">
-                        <div class="score-number">${score}</div>
-                        <div class="score-denominator">out of 10</div>
-                    </div>
-                    
-                    <h1 class="score-title">Your Marketing Intelligence Maturity Score</h1>
-                    
-                    <div class="maturity-level">${maturityLevel.label}</div>
-                    
-                    <p class="score-description">${maturityLevel.desc}</p>
-                    
-                    <div class="benchmark-badge">
-                        Based on aggregated data from 200+ marketing organizations
-                    </div>
-                </div>
-
-                <div class="info-box">
-                    <h3>Score Breakdown</h3>
-                    
-                    <div class="breakdown-item">
-                        <div class="breakdown-header">
-                            <span class="breakdown-label">Attribution Capability</span>
-                            <span class="breakdown-score">${breakdown.attribution}/10</span>
-                        </div>
-                        <div class="breakdown-bar-bg">
-                            <div class="breakdown-bar-fill" style="width: ${(breakdown.attribution / 10) * 100}%"></div>
-                        </div>
-                    </div>
-
-                    <div class="breakdown-item">
-                        <div class="breakdown-header">
-                            <span class="breakdown-label">Data Foundation</span>
-                            <span class="breakdown-score">${breakdown.dataFoundation}/10</span>
-                        </div>
-                        <div class="breakdown-bar-bg">
-                            <div class="breakdown-bar-fill" style="width: ${(breakdown.dataFoundation / 10) * 100}%"></div>
-                        </div>
-                    </div>
-
-                    <div class="breakdown-item">
-                        <div class="breakdown-header">
-                            <span class="breakdown-label">Operational Efficiency</span>
-                            <span class="breakdown-score">${breakdown.efficiency}/10</span>
-                        </div>
-                        <div class="breakdown-bar-bg">
-                            <div class="breakdown-bar-fill" style="width: ${(breakdown.efficiency / 10) * 100}%"></div>
-                        </div>
-                    </div>
-
-                    <div class="breakdown-item">
-                        <div class="breakdown-header">
-                            <span class="breakdown-label">ROI Visibility</span>
-                            <span class="breakdown-score">${breakdown.roiVisibility}/10</span>
-                        </div>
-                        <div class="breakdown-bar-bg">
-                            <div class="breakdown-bar-fill" style="width: ${(breakdown.roiVisibility / 10) * 100}%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cost-box">
-                    <h3>What This Is Costing You</h3>
-                    
-                    <div class="cost-grid">
-                        <div class="cost-item">
-                            <div class="cost-label">Manual Reporting Cost</div>
-                            <div class="cost-value">${formatCurrency(costs.reportingCost)}</div>
-                            <div class="cost-subtext">per year in labor costs</div>
-                        </div>
-                        
-                        <div class="cost-item">
-                            <div class="cost-label">Current Budget Waste</div>
-                            <div class="cost-value">${formatCurrency(costs.budgetWaste)}</div>
-                            <div class="cost-subtext">spent on wrong channels annually</div>
-                        </div>
-                    </div>
-
-                    <div class="cost-total">
-                        <div class="cost-label">Total Annual Opportunity</div>
-                        <div class="cost-value">${formatCurrency(costs.totalOpportunity)}</div>
-                        <div class="cost-subtext">Combined waste + missed ROI optimization potential + reporting inefficiency</div>
-                    </div>
-                </div>
-
-                <div class="priority-box">
-                    <h3>Your Top 3 Priorities</h3>
-                    
-                    ${priorities.map((priority, idx) => `
-                        <div class="priority-item">
-                            <div class="priority-number">${idx + 1}</div>
-                            <div class="priority-content">
-                                <div class="priority-title">${priority.title}</div>
-                                <div class="priority-reason">${priority.reason}</div>
-                                <div class="priority-impact">Estimated impact: ${priority.impact}</div>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-
-                <div class="cta-section">
-                    <h3 style="font-size: 24px; margin-bottom: 32px;">Ready to Close These Gaps?</h3>
-
-                    <div class="cta-buttons">
-                        <button class="btn btn-primary" onclick="window.open('https://certatudesolutions.com', '_blank')">
-                            Schedule Your Strategy Session
-                        </button>
-
-                        <button class="btn btn-secondary" onclick="window.open('https://certatudesolutions.com', '_blank')">
-                            Learn More About Our Solutions
-                        </button>
-                    </div>
-
-                    <div class="about-box">
-                        <h4>About This Assessment</h4>
-                        <p>
-                            This maturity assessment is built on frameworks developed through Certatude's work with over 200 marketing organizations across industries including technology, healthcare, financial services, and manufacturing. The scoring methodology incorporates research from leading analyst firms including Gartner, Forrester, McKinsey, and Nielsen, combined with our proprietary benchmarking data.
-                        </p>
-                        <p>
-                            Opportunity calculations reflect documented industry patterns showing that organizations with immature marketing intelligence capabilities typically waste 26-42% of their marketing budgets on misattributed or underperforming channels. The cost estimates combine direct labor inefficiencies, technology gaps, productivity losses, and opportunity costs from delayed decision-making. These figures are conservative relative to the actual improvements we've measured with clients who have addressed these gaps systematically.
-                        </p>
-                    </div>
-                </div>
-            `;
-
-            document.getElementById('results-screen').innerHTML = resultsHTML;
+            document.getElementById('results-screen').innerHTML = '<div style="padding: 40px; text-align: center;"><h2>Results Complete!</h2><p>Your assessment is ready.</p></div>';
         }
     </script>
 </body>
