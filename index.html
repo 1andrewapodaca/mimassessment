@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marketing Intelligence Maturity Assessment - Certatude Solutions</title>
+    <script src="https://js-na2.hsforms.net/forms/embed/242705853.js"></script>
     <style>
         * {
             margin: 0;
@@ -566,344 +567,336 @@
             }
         }
 
+        function calculateScore() {
+            let totalScore = 0;
+            
+            const roiScores = {
+                'none': 0,
+                'spreadsheets': 1,
+                'basic': 2,
+                'multitouch': 3.2,
+                'advanced': 4
+            };
+            totalScore += (roiScores[answers.roiMethod] || 0);
+            
+            const efficiencyScore = Math.max(0, 2 - (answers.reportingHours / 10));
+            totalScore += efficiencyScore;
+            
+            const confidenceScore = Math.pow(answers.dataConfidence / 10, 1.5) * 2.5;
+            totalScore += confidenceScore;
+            
+            const challengePenalty = Math.min(answers.challenge.length * 0.3, 1.5);
+            totalScore -= challengePenalty;
+            
+            if (answers.budget >= 20000000) totalScore += 1;
+            else if (answers.budget >= 10000000) totalScore += 0.75;
+            else if (answers.budget >= 5000000) totalScore += 0.5;
+            else if (answers.budget >= 2000000) totalScore += 0.25;
+            
+            return Math.min(10, Math.max(0, totalScore)).toFixed(1);
+        }
+
+        function getMaturityLevel(score) {
+            const numScore = parseFloat(score);
+            
+            if (numScore < 2.5) {
+                return { 
+                    label: 'Early Stage', 
+                    desc: `Your marketing intelligence infrastructure is in critical need of modernization. The cumulative impact of these gaps likely represents 40-60% of potential revenue being left on the table—a multi-million dollar problem that compounds quarterly.`
+                };
+            }
+            if (numScore < 4.5) {
+                return { 
+                    label: 'Developing', 
+                    desc: `You've established basic capabilities, but significant gaps remain that are costing you competitive advantage. Industry data shows organizations at your maturity level typically achieve only 50-65% of the ROI that mature organizations realize from the same budget.`
+                };
+            }
+            if (numScore < 6.5) {
+                return { 
+                    label: 'Advancing', 
+                    desc: `You're progressing toward marketing intelligence maturity, but critical gaps are preventing you from maximizing returns. Closing these specific gaps typically unlocks 25-40% improvement in marketing ROI within 6-9 months—the difference between market leadership and being a fast follower.`
+                };
+            }
+            if (numScore < 8.5) {
+                return { 
+                    label: 'Mature', 
+                    desc: `You've built strong marketing intelligence capabilities that put you ahead of most competitors. The remaining opportunities lie in advanced automation and predictive analytics. Companies at your maturity level who implement ML-driven optimization typically see an additional 12-18% performance lift.` 
+                };
+            }
+            return { 
+                label: 'Leading Edge', 
+                desc: `You're operating at the cutting edge of marketing intelligence—congratulations. Your focus should shift from foundational capabilities to emerging technologies like AI-driven creative optimization and predictive customer lifetime value modeling.`
+            };
+        }
+
+        function calculateOpportunityCost() {
+            const avgSalary = 85000;
+            const reportingCost = Math.floor((answers.reportingHours * 52 * avgSalary) / 2080);
+            
+            let budgetWaste = 0;
+            let potentialGains = 0;
+            
+            if (answers.roiMethod === 'none') {
+                budgetWaste = answers.budget * 0.42;
+                potentialGains = answers.budget * 0.48;
+            } else if (answers.roiMethod === 'spreadsheets') {
+                budgetWaste = answers.budget * 0.36;
+                potentialGains = answers.budget * 0.42;
+            } else if (answers.roiMethod === 'basic') {
+                budgetWaste = answers.budget * 0.32;
+                potentialGains = answers.budget * 0.38;
+            } else if (answers.roiMethod === 'multitouch') {
+                budgetWaste = answers.budget * 0.24;
+                potentialGains = answers.budget * 0.30;
+            } else {
+                budgetWaste = answers.budget * 0.18;
+                potentialGains = answers.budget * 0.25;
+            }
+            
+            if (answers.dataConfidence <= 4) {
+                budgetWaste *= 1.55;
+                potentialGains *= 1.55;
+            } else if (answers.dataConfidence <= 6) {
+                budgetWaste *= 1.35;
+                potentialGains *= 1.35;
+            } else if (answers.dataConfidence <= 8) {
+                budgetWaste *= 1.22;
+                potentialGains *= 1.22;
+            } else {
+                budgetWaste *= 1.10;
+                potentialGains *= 1.10;
+            }
+            
+            const challengeCount = answers.challenge.length;
+            const challengeMultiplier = 1 + (challengeCount * 0.12);
+            budgetWaste *= challengeMultiplier;
+            potentialGains *= challengeMultiplier;
+            
+            const avgMarketingSalary = 85000;
+            const productivityLossPerPerson = avgMarketingSalary * 0.35;
+            const productivityLoss = Math.max(answers.teamSize * productivityLossPerPerson, 150000);
+            
+            const techGapPerPerson = answers.roiMethod === 'none' ? 85000 : 
+                                     answers.roiMethod === 'spreadsheets' ? 65000 :
+                                     answers.roiMethod === 'basic' ? 45000 : 
+                                     answers.roiMethod === 'multitouch' ? 30000 : 20000;
+            const toolsGap = Math.max(answers.teamSize * techGapPerPerson, 100000);
+            
+            const decisionDelayCost = Math.floor(answers.budget * (answers.reportingHours / 80));
+            const innovationGap = answers.budget * 0.08;
+            
+            const calculatedTotal = Math.floor(
+                budgetWaste + 
+                potentialGains + 
+                reportingCost + 
+                productivityLoss + 
+                toolsGap + 
+                decisionDelayCost +
+                innovationGap
+            );
+            
+            let minimumOpportunity;
+            if (answers.budget >= 20000000) {
+                minimumOpportunity = Math.max(answers.budget * 0.65, 8000000);
+            } else if (answers.budget >= 10000000) {
+                minimumOpportunity = Math.max(answers.budget * 0.70, 4000000);
+            } else if (answers.budget >= 5000000) {
+                minimumOpportunity = Math.max(answers.budget * 0.75, 2500000);
+            } else {
+                minimumOpportunity = Math.max(answers.budget * 0.80, 1000000);
+            }
+            
+            return {
+                reportingCost: Math.max(reportingCost, 75000),
+                budgetWaste: Math.max(Math.floor(budgetWaste), answers.budget * 0.15),
+                potentialGains: Math.max(Math.floor(potentialGains), answers.budget * 0.20),
+                totalOpportunity: Math.max(calculatedTotal, minimumOpportunity)
+            };
+        }
+
+        function getBreakdownScores() {
+            const roiScores = {
+                'none': 1,
+                'spreadsheets': 2,
+                'basic': 4,
+                'multitouch': 7,
+                'advanced': 9
+            };
+            
+            return {
+                attribution: roiScores[answers.roiMethod] || 1,
+                dataFoundation: answers.dataConfidence,
+                efficiency: Math.max(1, 10 - Math.floor(answers.reportingHours / 4)),
+                roiVisibility: roiScores[answers.roiMethod] || 1
+            };
+        }
+
+        function getPriorities() {
+            const breakdown = getBreakdownScores();
+            const costs = calculateOpportunityCost();
+            
+            const priorities = [
+                {
+                    title: 'Fix Attribution & ROI Visibility',
+                    impact: formatCurrency(costs.budgetWaste),
+                    reason: 'Better attribution helps optimize budget allocation',
+                    score: breakdown.attribution
+                },
+                {
+                    title: 'Automate Reporting',
+                    impact: `${answers.reportingHours} hours/week saved`,
+                    reason: 'Free your team to focus on insights, not data gathering',
+                    score: breakdown.efficiency
+                },
+                {
+                    title: 'Improve Data Quality',
+                    impact: formatCurrency(costs.potentialGains),
+                    reason: 'Clean data is the foundation for all marketing intelligence',
+                    score: breakdown.dataFoundation
+                }
+            ];
+            
+            return priorities.sort((a, b) => a.score - b.score).slice(0, 3);
+        }
+
         function showResults() {
             document.getElementById('questions-screen').classList.add('hidden');
             document.getElementById('results-screen').classList.remove('hidden');
-            document.getElementById('results-screen').innerHTML = '<div style="padding: 40px; text-align: center;"><h2>Results Complete!</h2><p>Your assessment is ready.</p></div>';
-        }
-  function calculateScore() {
-    let totalScore = 0;
-    
-    const roiScores = {
-        'none': 0,
-        'spreadsheets': 1,
-        'basic': 2,
-        'multitouch': 3.2,
-        'advanced': 4
-    };
-    totalScore += (roiScores[answers.roiMethod] || 0);
-    
-    const efficiencyScore = Math.max(0, 2 - (answers.reportingHours / 10));
-    totalScore += efficiencyScore;
-    
-    const confidenceScore = Math.pow(answers.dataConfidence / 10, 1.5) * 2.5;
-    totalScore += confidenceScore;
-    
-    const challengePenalty = Math.min(answers.challenge.length * 0.3, 1.5);
-    totalScore -= challengePenalty;
-    
-    if (answers.budget >= 20000000) totalScore += 1;
-    else if (answers.budget >= 10000000) totalScore += 0.75;
-    else if (answers.budget >= 5000000) totalScore += 0.5;
-    else if (answers.budget >= 2000000) totalScore += 0.25;
-    
-    return Math.min(10, Math.max(0, totalScore)).toFixed(1);
-}
-
-function getMaturityLevel(score) {
-    const numScore = parseFloat(score);
-    
-    if (numScore < 2.5) {
-        return { 
-            label: 'Early Stage', 
-            desc: `Your marketing intelligence infrastructure is in critical need of modernization. The cumulative impact of these gaps likely represents 40-60% of potential revenue being left on the table—a multi-million dollar problem that compounds quarterly.`
-        };
-    }
-    if (numScore < 4.5) {
-        return { 
-            label: 'Developing', 
-            desc: `You've established basic capabilities, but significant gaps remain that are costing you competitive advantage. Industry data shows organizations at your maturity level typically achieve only 50-65% of the ROI that mature organizations realize from the same budget.`
-        };
-    }
-    if (numScore < 6.5) {
-        return { 
-            label: 'Advancing', 
-            desc: `You're progressing toward marketing intelligence maturity, but critical gaps are preventing you from maximizing returns. Closing these specific gaps typically unlocks 25-40% improvement in marketing ROI within 6-9 months—the difference between market leadership and being a fast follower.`
-        };
-    }
-    if (numScore < 8.5) {
-        return { 
-            label: 'Mature', 
-            desc: `You've built strong marketing intelligence capabilities that put you ahead of most competitors. The remaining opportunities lie in advanced automation and predictive analytics. Companies at your maturity level who implement ML-driven optimization typically see an additional 12-18% performance lift.` 
-        };
-    }
-    return { 
-        label: 'Leading Edge', 
-        desc: `You're operating at the cutting edge of marketing intelligence—congratulations. Your focus should shift from foundational capabilities to emerging technologies like AI-driven creative optimization and predictive customer lifetime value modeling.`
-    };
-}
-
-function calculateOpportunityCost() {
-    const avgSalary = 85000;
-    const reportingCost = Math.floor((answers.reportingHours * 52 * avgSalary) / 2080);
-    
-    let budgetWaste = 0;
-    let potentialGains = 0;
-    
-    if (answers.roiMethod === 'none') {
-        budgetWaste = answers.budget * 0.42;
-        potentialGains = answers.budget * 0.48;
-    } else if (answers.roiMethod === 'spreadsheets') {
-        budgetWaste = answers.budget * 0.36;
-        potentialGains = answers.budget * 0.42;
-    } else if (answers.roiMethod === 'basic') {
-        budgetWaste = answers.budget * 0.32;
-        potentialGains = answers.budget * 0.38;
-    } else if (answers.roiMethod === 'multitouch') {
-        budgetWaste = answers.budget * 0.24;
-        potentialGains = answers.budget * 0.30;
-    } else {
-        budgetWaste = answers.budget * 0.18;
-        potentialGains = answers.budget * 0.25;
-    }
-    
-    if (answers.dataConfidence <= 4) {
-        budgetWaste *= 1.55;
-        potentialGains *= 1.55;
-    } else if (answers.dataConfidence <= 6) {
-        budgetWaste *= 1.35;
-        potentialGains *= 1.35;
-    } else if (answers.dataConfidence <= 8) {
-        budgetWaste *= 1.22;
-        potentialGains *= 1.22;
-    } else {
-        budgetWaste *= 1.10;
-        potentialGains *= 1.10;
-    }
-    
-    const challengeCount = answers.challenge.length;
-    const challengeMultiplier = 1 + (challengeCount * 0.12);
-    budgetWaste *= challengeMultiplier;
-    potentialGains *= challengeMultiplier;
-    
-    const avgMarketingSalary = 85000;
-    const productivityLossPerPerson = avgMarketingSalary * 0.35;
-    const productivityLoss = Math.max(answers.teamSize * productivityLossPerPerson, 150000);
-    
-    const techGapPerPerson = answers.roiMethod === 'none' ? 85000 : 
-                             answers.roiMethod === 'spreadsheets' ? 65000 :
-                             answers.roiMethod === 'basic' ? 45000 : 
-                             answers.roiMethod === 'multitouch' ? 30000 : 20000;
-    const toolsGap = Math.max(answers.teamSize * techGapPerPerson, 100000);
-    
-    const decisionDelayCost = Math.floor(answers.budget * (answers.reportingHours / 80));
-    const innovationGap = answers.budget * 0.08;
-    
-    const calculatedTotal = Math.floor(
-        budgetWaste + 
-        potentialGains + 
-        reportingCost + 
-        productivityLoss + 
-        toolsGap + 
-        decisionDelayCost +
-        innovationGap
-    );
-    
-    let minimumOpportunity;
-    if (answers.budget >= 20000000) {
-        minimumOpportunity = Math.max(answers.budget * 0.65, 8000000);
-    } else if (answers.budget >= 10000000) {
-        minimumOpportunity = Math.max(answers.budget * 0.70, 4000000);
-    } else if (answers.budget >= 5000000) {
-        minimumOpportunity = Math.max(answers.budget * 0.75, 2500000);
-    } else {
-        minimumOpportunity = Math.max(answers.budget * 0.80, 1000000);
-    }
-    
-    return {
-        reportingCost: Math.max(reportingCost, 75000),
-        budgetWaste: Math.max(Math.floor(budgetWaste), answers.budget * 0.15),
-        potentialGains: Math.max(Math.floor(potentialGains), answers.budget * 0.20),
-        totalOpportunity: Math.max(calculatedTotal, minimumOpportunity)
-    };
-}
-
-function getBreakdownScores() {
-    const roiScores = {
-        'none': 1,
-        'spreadsheets': 2,
-        'basic': 4,
-        'multitouch': 7,
-        'advanced': 9
-    };
-    
-    return {
-        attribution: roiScores[answers.roiMethod] || 1,
-        dataFoundation: answers.dataConfidence,
-        efficiency: Math.max(1, 10 - Math.floor(answers.reportingHours / 4)),
-        roiVisibility: roiScores[answers.roiMethod] || 1
-    };
-}
-
-function getPriorities() {
-    const breakdown = getBreakdownScores();
-    const costs = calculateOpportunityCost();
-    
-    const priorities = [
-        {
-            title: 'Fix Attribution & ROI Visibility',
-            impact: formatCurrency(costs.budgetWaste),
-            reason: 'Better attribution helps optimize budget allocation',
-            score: breakdown.attribution
-        },
-        {
-            title: 'Automate Reporting',
-            impact: `${answers.reportingHours} hours/week saved`,
-            reason: 'Free your team to focus on insights, not data gathering',
-            score: breakdown.efficiency
-        },
-        {
-            title: 'Improve Data Quality',
-            impact: formatCurrency(costs.potentialGains),
-            reason: 'Clean data is the foundation for all marketing intelligence',
-            score: breakdown.dataFoundation
-        }
-    ];
-    
-    return priorities.sort((a, b) => a.score - b.score).slice(0, 3);
-}
-
-function showResults() {
-    document.getElementById('questions-screen').classList.add('hidden');
-    document.getElementById('results-screen').classList.remove('hidden');
-    
-    const score = calculateScore();
-    const maturityLevel = getMaturityLevel(score);
-    const breakdown = getBreakdownScores();
-    const costs = calculateOpportunityCost();
-    const priorities = getPriorities();
-
-    const resultsHTML = `
-        <div style="text-align: center; margin-bottom: 50px;">
-            <div style="display: inline-flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 24px;">
-                <div style="font-size: 72px; font-weight: 700; color: #0000CD; line-height: 1;">${score}</div>
-                <div style="font-size: 18px; color: #4F5D75; font-weight: 500; margin-top: 4px;">out of 10</div>
-            </div>
             
-            <h1 style="font-size: 36px; font-weight: 700; color: #0000CD; margin-bottom: 12px;">Your Marketing Intelligence Maturity Score</h1>
-            
-            <div style="font-size: 20px; color: #EF8354; font-weight: 600; margin-bottom: 16px;">${maturityLevel.label}</div>
-            
-            <p style="font-size: 16px; color: #4F5D75; margin: 0 auto 24px; max-width: 600px;">${maturityLevel.desc}</p>
-            
-            <div style="display: inline-block; background: #F0F0FF; color: #0000CD; padding: 8px 16px; font-size: 14px; font-weight: 600; border: 1px solid #C0C0FF;">
-                Based on aggregated data from 200+ marketing organizations
-            </div>
-        </div>
+            const score = calculateScore();
+            const maturityLevel = getMaturityLevel(score);
+            const breakdown = getBreakdownScores();
+            const costs = calculateOpportunityCost();
+            const priorities = getPriorities();
 
-        <div style="background: #F9FAFB; border: 1px solid #E5E7EB; padding: 32px; margin-bottom: 40px;">
-            <h3>Score Breakdown</h3>
-            
-            <div style="margin-bottom: 20px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="font-size: 15px; color: #000000; font-weight: 500;">Attribution Capability</span>
-                    <span style="font-size: 15px; color: #0000CD; font-weight: 700;">${breakdown.attribution}/10</span>
-                </div>
-                <div style="background: #E5E7EB; height: 8px; overflow: hidden;">
-                    <div style="background: #0000CD; height: 100%; width: ${(breakdown.attribution / 10) * 100}%;"></div>
-                </div>
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="font-size: 15px; color: #000000; font-weight: 500;">Data Foundation</span>
-                    <span style="font-size: 15px; color: #0000CD; font-weight: 700;">${breakdown.dataFoundation}/10</span>
-                </div>
-                <div style="background: #E5E7EB; height: 8px; overflow: hidden;">
-                    <div style="background: #0000CD; height: 100%; width: ${(breakdown.dataFoundation / 10) * 100}%;"></div>
-                </div>
-            </div>
-
-            <div style="margin-bottom: 20px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="font-size: 15px; color: #000000; font-weight: 500;">Operational Efficiency</span>
-                    <span style="font-size: 15px; color: #0000CD; font-weight: 700;">${breakdown.efficiency}/10</span>
-                </div>
-                <div style="background: #E5E7EB; height: 8px; overflow: hidden;">
-                    <div style="background: #0000CD; height: 100%; width: ${(breakdown.efficiency / 10) * 100}%;"></div>
-                </div>
-            </div>
-
-            <div style="margin-bottom: 0;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="font-size: 15px; color: #000000; font-weight: 500;">ROI Visibility</span>
-                    <span style="font-size: 15px; color: #0000CD; font-weight: 700;">${breakdown.roiVisibility}/10</span>
-                </div>
-                <div style="background: #E5E7EB; height: 8px; overflow: hidden;">
-                    <div style="background: #0000CD; height: 100%; width: ${(breakdown.roiVisibility / 10) * 100}%;"></div>
-                </div>
-            </div>
-        </div>
-
-        <div style="background: #FEF2F2; border: 1px solid #FCA5A5; padding: 32px; margin-bottom: 40px;">
-            <h3 style="color: #991B1B;">What This Is Costing You</h3>
-            
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 24px;">
-                <div style="background: white; padding: 24px; border: 1px solid #FECACA;">
-                    <div style="font-size: 14px; color: #991B1B; margin-bottom: 8px; font-weight: 600;">Manual Reporting Cost</div>
-                    <div style="font-size: 32px; font-weight: 700; color: #EF8354;">${formatCurrency(costs.reportingCost)}</div>
-                    <div style="font-size: 13px; color: #4F5D75;">per year in labor costs</div>
-                </div>
-                
-                <div style="background: white; padding: 24px; border: 1px solid #FECACA;">
-                    <div style="font-size: 14px; color: #991B1B; margin-bottom: 8px; font-weight: 600;">Current Budget Waste</div>
-                    <div style="font-size: 32px; font-weight: 700; color: #EF8354;">${formatCurrency(costs.budgetWaste)}</div>
-                    <div style="font-size: 13px; color: #4F5D75;">spent on wrong channels annually</div>
-                </div>
-            </div>
-
-            <div style="background: white; padding: 24px; border: 2px solid #991B1B;">
-                <div style="font-size: 14px; color: #991B1B; margin-bottom: 8px; font-weight: 600;">Total Annual Opportunity</div>
-                <div style="font-size: 40px; font-weight: 700; color: #991B1B;">${formatCurrency(costs.totalOpportunity)}</div>
-                <div style="font-size: 14px; color: #4F5D75; margin-top: 8px;">Combined waste + missed ROI optimization potential + reporting inefficiency</div>
-            </div>
-        </div>
-
-        <div style="background: #F0FDF4; border: 1px solid #86EFAC; padding: 32px; margin-bottom: 50px;">
-            <h3 style="color: #166534;">Your Top 3 Priorities</h3>
-            
-            ${priorities.map((priority, idx) => `
-                <div style="background: white; padding: 20px 24px; border: 1px solid #BBF7D0; display: flex; gap: 16px; margin-bottom: ${idx < 2 ? '16px' : '0'};">
-                    <div style="min-width: 32px; height: 32px; background: #6A5ACD; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px;">${idx + 1}</div>
-                    <div style="flex: 1;">
-                        <div style="font-size: 16px; font-weight: 700; color: #000000; margin-bottom: 6px;">${priority.title}</div>
-                        <div style="font-size: 14px; color: #4F5D75; margin-bottom: 8px;">${priority.reason}</div>
-                        <div style="font-size: 15px; color: #166534; font-weight: 600;">Estimated impact: ${priority.impact}</div>
+            const resultsHTML = `
+                <div style="text-align: center; margin-bottom: 50px;">
+                    <div style="display: inline-flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 24px;">
+                        <div style="font-size: 72px; font-weight: 700; color: #0000CD; line-height: 1;">${score}</div>
+                        <div style="font-size: 18px; color: #4F5D75; font-weight: 500; margin-top: 4px;">out of 10</div>
+                    </div>
+                    
+                    <h1 style="font-size:RetryAAContinuehtml 36px; font-weight: 700; color: #0000CD; margin-bottom: 12px;">Your Marketing Intelligence Maturity Score</h1>
+                    
+                    <div style="font-size: 20px; color: #EF8354; font-weight: 600; margin-bottom: 16px;">${maturityLevel.label}</div>
+                    
+                    <p style="font-size: 16px; color: #4F5D75; margin: 0 auto 24px; max-width: 600px;">${maturityLevel.desc}</p>
+                    
+                    <div style="display: inline-block; background: #F0F0FF; color: #0000CD; padding: 8px 16px; font-size: 14px; font-weight: 600; border: 1px solid #C0C0FF;">
+                        Based on aggregated data from 200+ marketing organizations
                     </div>
                 </div>
-            `).join('')}
-        </div>
 
-        <div style="border-top: 1px solid #E5E7EB; padding-top: 40px; text-align: center;">
-            <h3 style="font-size: 24px; font-weight: 700; color: #0000CD; margin-bottom: 32px;">Ready to Close These Gaps?</h3>
+                <div style="background: #F9FAFB; border: 1px solid #E5E7EB; padding: 32px; margin-bottom: 40px;">
+                    <h3>Score Breakdown</h3>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="font-size: 15px; color: #000000; font-weight: 500;">Attribution Capability</span>
+                            <span style="font-size: 15px; color: #0000CD; font-weight: 700;">${breakdown.attribution}/10</span>
+                        </div>
+                        <div style="background: #E5E7EB; height: 8px; overflow: hidden;">
+                            <div style="background: #0000CD; height: 100%; width: ${(breakdown.attribution / 10) * 100}%;"></div>
+                        </div>
+                    </div>
 
-        <div style="max-width: 600px; margin: 0 auto 32px;">
-                <script src="https://js-na2.hsforms.net/forms/embed/242705853.js"></script>
-                <div class="hs-form-frame" data-region="na2" data-form-id="f516c7b7-6dd3-4ed6-9615-3122407dfb3f" data-portal-id="242705853"></div>
-            </div>
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="font-size: 15px; color: #000000; font-weight: 500;">Data Foundation</span>
+                            <span style="font-size: 15px; color: #0000CD; font-weight: 700;">${breakdown.dataFoundation}/10</span>
+                        </div>
+                        <div style="background: #E5E7EB; height: 8px; overflow: hidden;">
+                            <div style="background: #0000CD; height: 100%; width: ${(breakdown.dataFoundation / 10) * 100}%;"></div>
+                        </div>
+                    </div>
 
-            <div style="display: flex; flex-direction: column; gap: 16px; max-width: 500px; margin: 0 auto 50px;">
-                <button class="btn btn-secondary" onclick="window.open('https://certatude.com', '_blank')" style="padding: 18px 40px;">
-                    Learn More About Our Solutions
-                </button>
-            </div>
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="font-size: 15px; color: #000000; font-weight: 500;">Operational Efficiency</span>
+                            <span style="font-size: 15px; color: #0000CD; font-weight: 700;">${breakdown.efficiency}/10</span>
+                        </div>
+                        <div style="background: #E5E7EB; height: 8px; overflow: hidden;">
+                            <div style="background: #0000CD; height: 100%; width: ${(breakdown.efficiency / 10) * 100}%;"></div>
+                        </div>
+                    </div>
 
-            <div style="background: #F9FAFB; border: 1px solid #E5E7EB; padding: 32px; border-radius: 4px; text-align: left; max-width: 700px; margin: 0 auto;">
+                    <div style="margin-bottom: 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="font-size: 15px; color: #000000; font-weight: 500;">ROI Visibility</span>
+                            <span style="font-size: 15px; color: #0000CD; font-weight: 700;">${breakdown.roiVisibility}/10</span>
+                        </div>
+                        <div style="background: #E5E7EB; height: 8px; overflow: hidden;">
+                            <div style="background: #0000CD; height: 100%; width: ${(breakdown.roiVisibility / 10) * 100}%;"></div>
+                        </div>
+                    </div>
+                </div>
 
-            <div style="background: #F9FAFB; border: 1px solid #E5E7EB; padding: 32px; border-radius: 4px; text-align: left; max-width: 700px; margin: 0 auto;">
-                <h4 style="font-size: 16px; font-weight: 700; color: #0000CD; margin-bottom: 16px;">About This Assessment</h4>
-                <p style="font-size: 14px; color: #4F5D75; line-height: 1.7; margin-bottom: 12px;">
-                    This maturity assessment is built on frameworks developed through Certatude's work with over 200 marketing organizations across industries including technology, healthcare, financial services, and manufacturing. The scoring methodology incorporates research from leading analyst firms including Gartner, Forrester, McKinsey, and Nielsen, combined with our proprietary benchmarking data.
-                </p>
-                <p style="font-size: 14px; color: #4F5D75; line-height: 1.7; margin-bottom: 0;">
-                    Opportunity calculations reflect documented industry patterns showing that organizations with immature marketing intelligence capabilities typically waste 26-42% of their marketing budgets on misattributed or underperforming channels. The cost estimates combine direct labor inefficiencies, technology gaps, productivity losses, and opportunity costs from delayed decision-making. These figures are conservative relative to the actual improvements we've measured with clients who have addressed these gaps systematically.
-                </p>
-            </div>
-        </div>
-    `;
+                <div style="background: #FEF2F2; border: 1px solid #FCA5A5; padding: 32px; margin-bottom: 40px;">
+                    <h3 style="color: #991B1B;">What This Is Costing You</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 24px;">
+                        <div style="background: white; padding: 24px; border: 1px solid #FECACA;">
+                            <div style="font-size: 14px; color: #991B1B; margin-bottom: 8px; font-weight: 600;">Manual Reporting Cost</div>
+                            <div style="font-size: 32px; font-weight: 700; color: #EF8354;">${formatCurrency(costs.reportingCost)}</div>
+                            <div style="font-size: 13px; color: #4F5D75;">per year in labor costs</div>
+                        </div>
+                        
+                        <div style="background: white; padding: 24px; border: 1px solid #FECACA;">
+                            <div style="font-size: 14px; color: #991B1B; margin-bottom: 8px; font-weight: 600;">Current Budget Waste</div>
+                            <div style="font-size: 32px; font-weight: 700; color: #EF8354;">${formatCurrency(costs.budgetWaste)}</div>
+                            <div style="font-size: 13px; color: #4F5D75;">spent on wrong channels annually</div>
+                        </div>
+                    </div>
 
-    document.getElementById('results-screen').innerHTML = resultsHTML;
-}
+                    <div style="background: white; padding: 24px; border: 2px solid #991B1B;">
+                        <div style="font-size: 14px; color: #991B1B; margin-bottom: 8px; font-weight: 600;">Total Annual Opportunity</div>
+                        <div style="font-size: 40px; font-weight: 700; color: #991B1B;">${formatCurrency(costs.totalOpportunity)}</div>
+                        <div style="font-size: 14px; color: #4F5D75; margin-top: 8px;">Combined waste + missed ROI optimization potential + reporting inefficiency</div>
+                    </div>
+                </div>
+
+                <div style="background: #F0FDF4; border: 1px solid #86EFAC; padding: 32px; margin-bottom: 50px;">
+                    <h3 style="color: #166534;">Your Top 3 Priorities</h3>
+                    
+                    ${priorities.map((priority, idx) => `
+                        <div style="background: white; padding: 20px 24px; border: 1px solid #BBF7D0; display: flex; gap: 16px; margin-bottom: ${idx < 2 ? '16px' : '0'};">
+                            <div style="min-width: 32px; height: 32px; background: #6A5ACD; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px;">${idx + 1}</div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 16px; font-weight: 700; color: #000000; margin-bottom: 6px;">${priority.title}</div>
+                                <div style="font-size: 14px; color: #4F5D75; margin-bottom: 8px;">${priority.reason}</div>
+                                <div style="font-size: 15px; color: #166534; font-weight: 600;">Estimated impact: ${priority.impact}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div style="border-top: 1px solid #E5E7EB; padding-top: 40px; text-align: center;">
+                    <h3 style="font-size: 24px; font-weight: 700; color: #0000CD; margin-bottom: 32px;">Ready to Close These Gaps?</h3>
+
+                    <div style="max-width: 600px; margin: 0 auto 32px;">
+                        <div class="hs-form-frame" data-region="na2" data-form-id="f516c7b7-6dd3-4ed6-9615-3122407dfb3f" data-portal-id="242705853"></div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 16px; max-width: 500px; margin: 0 auto 50px;">
+                        <button class="btn btn-secondary" onclick="window.open('https://certatude.com', '_blank')" style="padding: 18px 40px;">
+                            Learn More About Our Solutions
+                        </button>
+                    </div>
+
+                    <div style="background: #F9FAFB; border: 1px solid #E5E7EB; padding: 32px; border-radius: 4px; text-align: left; max-width: 700px; margin: 0 auto;">
+                        <h4 style="font-size: 16px; font-weight: 700; color: #0000CD; margin-bottom: 16px;">About This Assessment</h4>
+                        <p style="font-size: 14px; color: #4F5D75; line-height: 1.7; margin-bottom: 12px;">
+                            This maturity assessment is built on frameworks developed through Certatude's work with over 200 marketing organizations across industries including technology, healthcare, financial services, and manufacturing. The scoring methodology incorporates research from leading analyst firms including Gartner, Forrester, McKinsey, and Nielsen, combined with our proprietary benchmarking data.
+                        </p>
+                        <p style="font-size: 14px; color: #4F5D75; line-height: 1.7; margin-bottom: 0;">
+                            Opportunity calculations reflect documented industry patterns showing that organizations with immature marketing intelligence capabilities typically waste 26-42% of their marketing budgets on misattributed or underperforming channels. The cost estimates combine direct labor inefficiencies, technology gaps, productivity losses, and opportunity costs from delayed decision-making. These figures are conservative relative to the actual improvements we've measured with clients who have addressed these gaps systematically.
+                        </p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('results-screen').innerHTML = resultsHTML;
+        }
     </script>
 </body>
 </html>
